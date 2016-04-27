@@ -85,7 +85,7 @@ namespace NeonShooter
                 float speed = 18f*(1f - 1/rand.NextFloat(1f, 10f));
                 var state = new ParticleState(rand.NextVector2(speed, speed),ParticleType.Enemy);
                 var particleColor = Color.Lerp(color1, color2, rand.NextFloat(0, 1));
-                GameRoot.ParticleManager.CreateParticle(Art.LineParticle,Position, particleColor, 60,new Vector2(0.7f,0.7f), state);
+                GameRoot.ParticleManager.CreateParticle(Art.LineParticle,Position, particleColor, 180,new Vector2(0.7f,0.7f), state);
             }
         }
 

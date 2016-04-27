@@ -35,10 +35,10 @@ namespace NeonShooter
         static PlayerStatus()
         {
             HighScore = LoadHighScore();
-            Reset();
+            Reset(false);
         }
 
-        public static void Reset()
+        public static void Reset(bool isGameOver)
         {
             if (Score > HighScore)
                 SaveHighScore(HighScore = Score);
@@ -47,7 +47,7 @@ namespace NeonShooter
             scoreForExtraLife = 2000;
             multiplierTimeLeft = 0;
             ResetMultiplier();
-            IsGameOver = false;
+            IsGameOver = isGameOver;
         }
 
         public static void Update()

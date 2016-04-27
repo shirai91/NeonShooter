@@ -26,8 +26,8 @@ namespace NeonShooter
                 IsPaused = false;
                 if (IsPausedWhenGameOver)
                 {
-                    IsPausedWhenGameOver = true;
-                    PlayerStatus.Reset();
+                    IsPausedWhenGameOver = false;
+                    PlayerStatus.Reset(false);
                 }
             }
         }

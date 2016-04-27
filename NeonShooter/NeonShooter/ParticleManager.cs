@@ -41,12 +41,6 @@ namespace NeonShooter
             //particle.Scale.X = particle.State.LengthMultiplier * Math.Min(Math.Min(1f, 0.2f * speed + 0.1f), alpha);
             //particle.Scale.Y = particle.State.LengthMultiplier * Math.Min(Math.Min(1f, 0.2f * speed + 0.1f), alpha);
             //when velocity ~ 0, set it to 0;
-            if (Math.Abs(velocity.X) + Math.Abs(velocity.Y) < 0.00000001f)
-            {
-                velocity = Vector2.Zero;
-            }
-            velocity *= 0.97f;//slowdown particle ~97% last frame;
-            particle.State.Velocity = velocity;
             var pos = particle.Position;
             int width = (int)GameRoot.ScreenSize.X;
             int height = (int)GameRoot.ScreenSize.Y;
@@ -58,6 +52,14 @@ namespace NeonShooter
             if (pos.Y < 0) velocity.Y = Math.Abs(velocity.Y);
             else if (pos.Y > height)
                 velocity.Y = -Math.Abs(velocity.Y);
+            if (Math.Abs(velocity.X) + Math.Abs(velocity.Y) < 0.00000001f)
+            {
+                velocity = Vector2.Zero;
+            }
+            else if (particle.State.Type == ParticleType.Enemy)
+                velocity *= 0.94f;
+            else
+                velocity *= 0.96f + Math.Abs(velocity.X) % 0.04f;
             if (particle.State.Type != ParticleType.IgnoreGravity)
             {
                 foreach (var blackHole in EntityManager.BlackHoles)
@@ -72,6 +74,7 @@ namespace NeonShooter
                         velocity += 45 * new Vector2(n.Y, -n.X) / (distance + 100);
                 }
             }
+            particle.State.Velocity = velocity;
         }
     }
     public class ParticleManager<T>

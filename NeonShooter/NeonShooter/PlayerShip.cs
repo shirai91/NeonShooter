@@ -62,15 +62,15 @@ namespace NeonShooter
         {
             EntityManager.Reset();
             EnemySpawner.Reset();
-            framesUntilRespawn = 60;
+            //framesUntilRespawn = 60;
             PlayerStatus.RemoveLife();
             PlayerStatus.ResetMultiplier();
-            framesUntilRespawn = PlayerStatus.IsGameOver ? 300 : 120;
             if (PlayerStatus.Lives == 0)
             {
                 PlayerStatus.GameOver();
                 GameManager.PauseGame(300,true);
             }
+            framesUntilRespawn = PlayerStatus.IsGameOver ? 300 : 120;
             var yellow = new Color(0.8f, 0.8f, 0.4f);
 
             for (var i = 0; i < 1200; i++)

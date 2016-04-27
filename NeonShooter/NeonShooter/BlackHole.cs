@@ -35,9 +35,9 @@ namespace NeonShooter
                 {
                     var sprayVel = MathUtil.FromPolar(MathHelper.TwoPi * i / numParticles + startOffset, rand.NextFloat(8, 16));
                     var pos = Position + 2f * sprayVel;
-                    var state = new ParticleState(sprayVel, ParticleType.IgnoreGravity);
+                    var state = new ParticleState(sprayVel, ParticleType.Enemy);
 
-                    GameRoot.ParticleManager.CreateParticle(Art.LineParticle, pos, particleColor, 90, new Vector2(1.5f,1.5f), state);
+                    GameRoot.ParticleManager.CreateParticle(Art.LineParticle, pos, particleColor, 180, new Vector2(0.7f,0.7f), state);
                 }
                 IsExpired = true;
             }

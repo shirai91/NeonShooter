@@ -27,8 +27,8 @@ namespace NeonShooter
             Content.RootDirectory = "Content";
             bloom = new BloomComponent(this);
             Components.Add(bloom);
-            graphics.PreferredBackBufferWidth = 1200;
-            graphics.PreferredBackBufferHeight = 800;
+            graphics.PreferredBackBufferWidth = 1350;
+            graphics.PreferredBackBufferHeight = 730;
             bloom.Settings = BloomSettings.PresetSettings[2];
         }
 
@@ -109,11 +109,12 @@ namespace NeonShooter
             DrawRightAlignedString("Score: " + PlayerStatus.Score, 5);
             DrawRightAlignedString("Multiplier: " + PlayerStatus.Multiplier, 35);
             spriteBatch.Draw(Art.Pointer,Input.MousePosition,Color.White);
-            if (PlayerStatus.IsGameOver)
+            if (GameManager.IsPausedWhenGameOver)
             {
                 var text = "Game Over\n" +
-                    "Your Score: " + PlayerStatus.Score + "\n" +
-                    "High Score: " + PlayerStatus.HighScore;
+                           "Your Score: " + PlayerStatus.Score + "\n" +
+                           "High Score: " + PlayerStatus.HighScore + "\n" +
+                           $"Restart in {GameManager.PauseFrame/60+1:D1}";
 
                 var textSize = Art.Font.MeasureString(text);
                 spriteBatch.DrawString(Art.Font, text, ScreenSize / 2 - textSize / 2, Color.White);
