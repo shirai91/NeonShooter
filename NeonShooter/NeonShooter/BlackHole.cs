@@ -63,7 +63,7 @@ namespace NeonShooter
 
                 GameRoot.ParticleManager.CreateParticle(Art.LineParticle, pos, color, 60, new Vector2(0.7f,0.7f), state);
             }
-
+            
             // rotate the spray direction
             sprayAngle -= MathHelper.TwoPi / 50f;
             foreach (var entity in entities)

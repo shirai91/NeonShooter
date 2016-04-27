@@ -199,8 +199,8 @@ namespace BloomPostprocess
         void DrawFullscreenQuad(Texture2D texture, RenderTarget2D renderTarget,
                                 Effect effect, IntermediateBuffer currentBuffer)
         {
+            GraphicsDevice.Clear(Color.TransparentBlack);
             GraphicsDevice.SetRenderTarget(renderTarget);
-
             DrawFullscreenQuad(texture,
                                renderTarget.Width, renderTarget.Height,
                                effect, currentBuffer);

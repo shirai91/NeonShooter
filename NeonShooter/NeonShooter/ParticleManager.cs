@@ -28,6 +28,7 @@ namespace NeonShooter
         {
             Velocity = velocity;
             Type = type;
+            LengthMultiplier = length;
         }
         public static void UpdateParticle(ParticleManager<ParticleState>.Particle particle)
         {
@@ -38,7 +39,7 @@ namespace NeonShooter
             float alpha = Math.Min(1, Math.Min(particle.PercentLife*2, speed*1f));
             alpha *= alpha;
             particle.Color.A = (byte) (255*alpha);
-            //particle.Scale.X = particle.State.LengthMultiplier * Math.Min(Math.Min(1f, 0.2f * speed + 0.1f), alpha);
+            particle.Scale.X = particle.State.LengthMultiplier * Math.Min(Math.Min(1f, 0.2f * speed + 0.1f), alpha);
             //particle.Scale.Y = particle.State.LengthMultiplier * Math.Min(Math.Min(1f, 0.2f * speed + 0.1f), alpha);
             //when velocity ~ 0, set it to 0;
             var pos = particle.Position;

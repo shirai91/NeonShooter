@@ -100,11 +100,11 @@ namespace NeonShooter
         {
             bloom.BeginDraw(renderTarget2D);
             bloom.ShowBuffer = BloomComponent.IntermediateBuffer.FinalResult;
-            bloom.Draw(gameTime, renderTarget2D);
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.Additive);
             ParticleManager.Draw(spriteBatch);
             EntityManager.Draw(spriteBatch);
+            bloom.Draw(gameTime, renderTarget2D);
             spriteBatch.DrawString(Art.Font, "Lives: " + PlayerStatus.Lives, new Vector2(5), Color.White);
             DrawRightAlignedString("Score: " + PlayerStatus.Score, 5);
             DrawRightAlignedString("Multiplier: " + PlayerStatus.Multiplier, 35);
@@ -119,8 +119,10 @@ namespace NeonShooter
                 var textSize = Art.Font.MeasureString(text);
                 spriteBatch.DrawString(Art.Font, text, ScreenSize / 2 - textSize / 2, Color.White);
             }
+
             spriteBatch.End();
             base.Draw(gameTime);
+
         }
         private void DrawRightAlignedString(string text, float y)
         {
