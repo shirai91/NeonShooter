@@ -19,6 +19,7 @@ namespace NeonShooter
         static List<BlackHole> blackHoles = new List<BlackHole>();  
         public static int Count => entities.Count;
         public static int BlackHoleCount => blackHoles.Count;
+        public static List<BlackHole> BlackHoles => blackHoles;
         public static void Add(Entity entity)
         {
             if (!isUpdating)

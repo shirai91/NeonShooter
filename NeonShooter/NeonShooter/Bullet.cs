@@ -7,8 +7,10 @@ using Microsoft.Xna.Framework;
 
 namespace NeonShooter
 {
-    public class Bullet:Entity
+    public class Bullet : Entity
     {
+        private static Random rand = new Random();
+
         public Bullet(Vector2 position, Vector2 velocity)
         {
             image = Art.Bullet;
@@ -17,6 +19,7 @@ namespace NeonShooter
             Orientation = Velocity.ToAngle();
             Radius = 8;
         }
+
         public override void Update()
         {
             if (Velocity.LengthSquared() > 0)
@@ -25,7 +28,14 @@ namespace NeonShooter
             }
             Position += Velocity;
             if (!GameRoot.Viewport.Bounds.Contains(Position.ToPoint()))
+            {
                 IsExpired = true;
+                for (var i = 0; i < 30; i++)
+                    GameRoot.ParticleManager.CreateParticle(Art.LineParticle, Position, Color.LightBlue, 50,
+                        new Vector2(0.5f, 0.5f),
+                        new ParticleState(Velocity = rand.NextVector2(0, 9), ParticleType.Bullet));
+            }
+
         }
     }
 }

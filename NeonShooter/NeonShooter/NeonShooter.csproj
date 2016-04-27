@@ -43,6 +43,7 @@
     <Compile Include="BloomComponent.cs" />
     <Compile Include="BloomSettings.cs" />
     <Compile Include="Bullet.cs" />
+    <Compile Include="ColorUtil.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemySpawner.cs" />
     <Compile Include="Entity.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="GameRoot.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="MathUtil.cs" />
+    <Compile Include="ParticleManager.cs" />
     <Compile Include="PlayerShip.cs" />
     <Compile Include="PlayerStatus.cs" />
     <Compile Include="Program.cs" />

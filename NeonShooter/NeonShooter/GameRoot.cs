@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace NeonShooter
 {
@@ -16,6 +17,7 @@ namespace NeonShooter
         public static Viewport Viewport => Instance.GraphicsDevice.Viewport;
         public static Vector2 ScreenSize => new Vector2(Viewport.Width, Viewport.Height);
         public static GameTime GameTime => new GameTime();
+        public static ParticleManager<ParticleState> ParticleManager { get; private set; }
         BloomComponent bloom;
         RenderTarget2D renderTarget2D;
         public GameRoot()
@@ -25,6 +27,8 @@ namespace NeonShooter
             Content.RootDirectory = "Content";
             bloom = new BloomComponent(this);
             Components.Add(bloom);
+            graphics.PreferredBackBufferWidth = 1200;
+            graphics.PreferredBackBufferHeight = 800;
             bloom.Settings = BloomSettings.PresetSettings[2];
         }
 
@@ -39,7 +43,10 @@ namespace NeonShooter
             // TODO: Add your initialization logic here
             Art.Load(Content);
             Sound.Load(Content);
+            ParticleManager = new ParticleManager<ParticleState>(1024*20,ParticleState.UpdateParticle);
             EntityManager.Add(PlayerShip.Instance);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(Sound.Music);
             renderTarget2D = new RenderTarget2D(graphics.GraphicsDevice, Viewport.Width, Viewport.Height, false, graphics.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.None);
             base.Initialize();
         }
@@ -76,6 +83,7 @@ namespace NeonShooter
                 Exit();
             EntityManager.Update();
             Input.Update();
+            ParticleManager.Update();
             GameManager.Update();
             EnemySpawner.Update();
             PlayerStatus.Update();
@@ -92,14 +100,13 @@ namespace NeonShooter
             bloom.ShowBuffer = BloomComponent.IntermediateBuffer.FinalResult;
             bloom.Draw(gameTime, renderTarget2D);
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin(SpriteSortMode.Texture,BlendState.Additive);
+            spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.Additive);
+            ParticleManager.Draw(spriteBatch);
             EntityManager.Draw(spriteBatch);
             spriteBatch.DrawString(Art.Font, "Lives: " + PlayerStatus.Lives, new Vector2(5), Color.White);
             DrawRightAlignedString("Score: " + PlayerStatus.Score, 5);
             DrawRightAlignedString("Multiplier: " + PlayerStatus.Multiplier, 35);
             spriteBatch.Draw(Art.Pointer,Input.MousePosition,Color.White);
-            spriteBatch.End();
-            // TODO: Add your drawing code here
             if (PlayerStatus.IsGameOver)
             {
                 var text = "Game Over\n" +
@@ -109,6 +116,7 @@ namespace NeonShooter
                 var textSize = Art.Font.MeasureString(text);
                 spriteBatch.DrawString(Art.Font, text, ScreenSize / 2 - textSize / 2, Color.White);
             }
+            spriteBatch.End();
             base.Draw(gameTime);
         }
         private void DrawRightAlignedString(string text, float y)

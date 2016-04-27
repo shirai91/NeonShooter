@@ -21,5 +21,16 @@ namespace NeonShooter
         {
             return vector * (length / vector.Length());
         }
+        public static Vector2 NextVector2(this Random rand, float minLength, float maxLength)
+        {
+            var theta = rand.NextDouble() * 2 * Math.PI;
+            var length = rand.NextFloat(minLength, maxLength);
+            return new Vector2(length * (float)Math.Cos(theta), length * (float)Math.Sin(theta));
+        }
+        public static Point ToPoint(this Vector2 vector)
+        {
+            return new Point((int)vector.X, (int)vector.Y);
+        }
+
     }
 }

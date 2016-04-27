@@ -17,7 +17,8 @@ namespace NeonShooter
         public static Texture2D Pointer { get; private set; }
         public static Texture2D BlackHole { get; private set; }
         public static SpriteFont Font { get; internal set; }
-
+        public static Texture2D LineParticle { get; private set; }
+        public static Texture2D Glow { get; private set; }
         public static void Load(ContentManager content)
         {
             Player = content.Load<Texture2D>("Player");
@@ -27,6 +28,8 @@ namespace NeonShooter
             Pointer = content.Load<Texture2D>("Pointer");
             Font = content.Load<SpriteFont>("Font");
             BlackHole = content.Load<Texture2D>("Black Hole");
+            LineParticle = content.Load<Texture2D>("Laser");
+            Glow = content.Load<Texture2D>("Glow");
         }
     }
 }
