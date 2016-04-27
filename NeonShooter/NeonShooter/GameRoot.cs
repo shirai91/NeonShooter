@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace NeonShooter
 {
@@ -41,6 +42,8 @@ namespace NeonShooter
             Sound.Load(Content);
             EntityManager.Add(PlayerShip.Instance);
             renderTarget2D = new RenderTarget2D(graphics.GraphicsDevice, Viewport.Width, Viewport.Height, false, graphics.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.None);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(Sound.Music);
             base.Initialize();
         }
 
