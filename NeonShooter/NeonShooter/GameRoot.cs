@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BloomPostprocess;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -15,11 +16,16 @@ namespace NeonShooter
         public static Viewport Viewport => Instance.GraphicsDevice.Viewport;
         public static Vector2 ScreenSize => new Vector2(Viewport.Width, Viewport.Height);
         public static GameTime GameTime => new GameTime();
+        BloomComponent bloom;
+        RenderTarget2D renderTarget2D;
         public GameRoot()
         {
             Instance = this;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            bloom = new BloomComponent(this);
+            Components.Add(bloom);
+            bloom.Settings = BloomSettings.PresetSettings[2];
         }
 
         /// <summary>
@@ -34,6 +40,7 @@ namespace NeonShooter
             Art.Load(Content);
             Sound.Load(Content);
             EntityManager.Add(PlayerShip.Instance);
+            renderTarget2D = new RenderTarget2D(graphics.GraphicsDevice, Viewport.Width, Viewport.Height, false, graphics.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.None);
             base.Initialize();
         }
 
@@ -45,6 +52,7 @@ namespace NeonShooter
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            bloom.LoadContent(graphics.GraphicsDevice,Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -80,6 +88,9 @@ namespace NeonShooter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            bloom.BeginDraw(renderTarget2D);
+            bloom.ShowBuffer = BloomComponent.IntermediateBuffer.FinalResult;
+            bloom.Draw(gameTime, renderTarget2D);
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.Texture,BlendState.Additive);
             EntityManager.Draw(spriteBatch);
