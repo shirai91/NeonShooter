@@ -77,7 +77,7 @@ namespace NeonShooter
                     break;
                 }
             }
-            //handle collisions between the player and blackhole
+            //handle collisions between blackhole and bullet
             for (int i = 0; i < blackHoles.Count; i++)
             {
                 for (int j = 0; j < enemies.Count; j++)
@@ -134,10 +134,8 @@ namespace NeonShooter
 
         public static void Reset()
         {
-            //entities.Clear();
-            bullets.Clear();
-            enemies.Clear();
-            blackHoles.Clear();
+            enemies.ForEach(x=> x.IsExpired = true);
+            blackHoles.ForEach(x => x.IsExpired = true);
         }
     }
 }
