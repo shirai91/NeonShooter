@@ -48,6 +48,8 @@ namespace NeonShooter
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(Sound.Music);
             renderTarget2D = new RenderTarget2D(graphics.GraphicsDevice, Viewport.Width, Viewport.Height, false, graphics.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.None);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(Sound.Music);
             base.Initialize();
         }
 

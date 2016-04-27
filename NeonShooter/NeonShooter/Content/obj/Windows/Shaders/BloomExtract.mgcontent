@@ -3,7 +3,7 @@
   <SourceFile>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Shaders/BloomExtract.fx</SourceFile>
   <SourceTime>2016-04-27T07:58:06.3824678+07:00</SourceTime>
   <DestFile>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/bin/Windows/Shaders/BloomExtract.xnb</DestFile>
-  <DestTime>2016-04-27T20:56:25.6453099+07:00</DestTime>
+  <DestTime>2016-04-27T21:24:24.0648991+07:00</DestTime>
   <Importer>EffectImporter</Importer>
   <ImporterTime>2016-03-30T13:36:08+07:00</ImporterTime>
   <Processor>EffectProcessor</Processor>

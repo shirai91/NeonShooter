@@ -42,6 +42,8 @@ namespace NeonShooter
             // slowly increase the spawn rate as time progresses
             if (inverseSpawnChance > 20)
                 inverseSpawnChance -= 0.005f;
+            if (inverseBlackHoleChance > 60)
+                inverseBlackHoleChance -= 0.005f;
         }
 
         private static Vector2 GetSpawnPosition()
