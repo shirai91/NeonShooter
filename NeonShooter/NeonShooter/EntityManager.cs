@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,9 @@ namespace NeonShooter
         static List<Entity> addedEntities = new List<Entity>();
         static List<Enemy> enemies = new List<Enemy>();
         static List<Bullet> bullets = new List<Bullet>();
+        static List<BlackHole> blackHoles = new List<BlackHole>();  
         public static int Count => entities.Count;
-
+        public static int BlackHoleCount => blackHoles.Count;
         public static void Add(Entity entity)
         {
             if (!isUpdating)
@@ -33,6 +35,8 @@ namespace NeonShooter
                 bullets.Add(entity as Bullet);
             else if (entity is Enemy)
                 enemies.Add(entity as Enemy);
+            if (entity is BlackHole)
+                blackHoles.Add(entity as BlackHole);
         }
         private static bool IsColliding(Entity a, Entity b)
         {
@@ -73,6 +77,32 @@ namespace NeonShooter
                     break;
                 }
             }
+            //handle collisions between the player and blackhole
+            for (int i = 0; i < blackHoles.Count; i++)
+            {
+                for (int j = 0; j < enemies.Count; j++)
+                    if (enemies[j].IsActive && IsColliding(blackHoles[i], enemies[j]))
+                        enemies[j].WasShot();
+
+                for (int j = 0; j < bullets.Count; j++)
+                {
+                    if (IsColliding(blackHoles[i], bullets[j]))
+                    {
+                        bullets[j].IsExpired = true;
+                        blackHoles[i].WasShot();
+                    }
+                }
+
+                if (IsColliding(PlayerShip.Instance, blackHoles[i]))
+                {
+                    PlayerShip.Instance.Kill();
+                    break;
+                }
+            }
+        }
+        public static List<Entity> GetNearbyEntities(Vector2 position, float radius)
+        {
+            return entities.Where(x => Vector2.DistanceSquared(position, x.Position) < radius * radius).ToList();
         }
         public static void Update()
         {
@@ -91,6 +121,7 @@ namespace NeonShooter
             entities = entities.Where(x => !x.IsExpired).ToList();
             bullets = bullets.Where(x => !x.IsExpired).ToList();
             enemies = enemies.Where(x => !x.IsExpired).ToList();
+            blackHoles = blackHoles.Where(x => !x.IsExpired).ToList();
         }
 
         public static void Draw(SpriteBatch spriteBatch)

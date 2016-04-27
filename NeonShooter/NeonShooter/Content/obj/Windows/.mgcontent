@@ -34,5 +34,8 @@
     <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Shaders/BloomCombine.fx</File>
     <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Shaders/BloomExtract.fx</File>
     <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Shaders/GaussianBlur.fx</File>
+    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Black Hole.png</File>
+    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Glow.png</File>
+    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Laser.png</File>
   </SourceFiles>
 </SourceFileCollection>
