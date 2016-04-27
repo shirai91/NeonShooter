@@ -50,6 +50,7 @@ namespace NeonShooter
                 var vel = MathUtil.FromPolar(aimAngle + randomSpread, 11f);
                 var offset = Vector2.Transform(new Vector2(25, -8), aimQuaternion);
                 EntityManager.Add(new Bullet(Position + offset,vel));
+                Sound.Shot.Play(0.2f, rand.NextFloat(-0.2f, 0.2f), 0);
             }
             if (cooldownRemaining > 0)
             {
@@ -61,8 +62,15 @@ namespace NeonShooter
             EnemySpawner.Reset();
             framesUntilRespawn = 60;
             PlayerStatus.RemoveLife();
+            PlayerStatus.ResetMultiplier();
+            framesUntilRespawn = PlayerStatus.IsGameOver ? 300 : 120;
             if (PlayerStatus.Lives == 0)
-                PlayerStatus.Reset();
+            {
+                PlayerStatus.GameOver();
+                GameManager.PauseGame(300,true);
+            }
+
+
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

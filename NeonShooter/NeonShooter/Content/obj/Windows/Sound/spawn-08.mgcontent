@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-08.wav</SourceFile>
+  <SourceTime>2016-04-27T05:20:54.516177+07:00</SourceTime>
+  <DestFile>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/bin/Windows/Sound/spawn-08.xnb</DestFile>
+  <DestTime>2016-04-27T06:27:56.4103575+07:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2016-03-30T13:36:08+07:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2016-03-30T13:36:08+07:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

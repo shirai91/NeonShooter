@@ -32,6 +32,7 @@ namespace NeonShooter
         {
             // TODO: Add your initialization logic here
             Art.Load(Content);
+            Sound.Load(Content);
             EntityManager.Add(PlayerShip.Instance);
             base.Initialize();
         }
@@ -65,10 +66,9 @@ namespace NeonShooter
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
             EntityManager.Update();
             Input.Update();
+            GameManager.Update();
             EnemySpawner.Update();
             PlayerStatus.Update();
             base.Update(gameTime);
@@ -89,7 +89,15 @@ namespace NeonShooter
             spriteBatch.Draw(Art.Pointer,Input.MousePosition,Color.White);
             spriteBatch.End();
             // TODO: Add your drawing code here
+            if (PlayerStatus.IsGameOver)
+            {
+                var text = "Game Over\n" +
+                    "Your Score: " + PlayerStatus.Score + "\n" +
+                    "High Score: " + PlayerStatus.HighScore;
 
+                var textSize = Art.Font.MeasureString(text);
+                spriteBatch.DrawString(Art.Font, text, ScreenSize / 2 - textSize / 2, Color.White);
+            }
             base.Draw(gameTime);
         }
         private void DrawRightAlignedString(string text, float y)

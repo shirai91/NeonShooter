@@ -70,9 +70,11 @@ namespace NeonShooter
         }
         public void WasShot()
         {
+            var rand = new Random();
             IsExpired = true;
             PlayerStatus.AddPoints(PointValue);
             PlayerStatus.IncreaseMultiplier();
+            Sound.Explosion.Play(0.5f, rand.NextFloat(-0.2f, 0.2f), 0);
         }
 
         IEnumerable<int> FollowPlayer(float acceleration = 1f)
