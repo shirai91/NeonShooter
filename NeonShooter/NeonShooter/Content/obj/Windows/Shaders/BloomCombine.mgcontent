@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Shaders/BloomCombine.fx</SourceFile>
-  <SourceTime>2016-04-27T07:58:06.377469+07:00</SourceTime>
-  <DestFile>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/bin/Windows/Shaders/BloomCombine.xnb</DestFile>
-  <DestTime>2016-04-27T08:21:07.1670978+07:00</DestTime>
+  <SourceFile>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Shaders/BloomCombine.fx</SourceFile>
+  <SourceTime>2016-04-27T09:05:20.9383997+07:00</SourceTime>
+  <DestFile>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/bin/Windows/Shaders/BloomCombine.xnb</DestFile>
+  <DestTime>2016-04-27T09:10:15.0738761+07:00</DestTime>
   <Importer>EffectImporter</Importer>
-  <ImporterTime>2016-03-30T13:36:08+07:00</ImporterTime>
+  <ImporterTime>2016-03-16T09:18:04+07:00</ImporterTime>
   <Processor>EffectProcessor</Processor>
-  <ProcessorTime>2016-03-30T13:36:08+07:00</ProcessorTime>
+  <ProcessorTime>2016-03-16T09:18:04+07:00</ProcessorTime>
   <Parameters>
     <Key>DebugMode</Key>
     <Value>Auto</Value>

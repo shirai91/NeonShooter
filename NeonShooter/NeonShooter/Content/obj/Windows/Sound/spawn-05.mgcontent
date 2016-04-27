@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-05.wav</SourceFile>
-  <SourceTime>2016-04-27T05:20:54.429017+07:00</SourceTime>
-  <DestFile>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/bin/Windows/Sound/spawn-05.xnb</DestFile>
-  <DestTime>2016-04-27T08:21:06.5740876+07:00</DestTime>
+  <SourceFile>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-05.wav</SourceFile>
+  <SourceTime>2016-04-27T09:05:21.5728136+07:00</SourceTime>
+  <DestFile>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/bin/Windows/Sound/spawn-05.xnb</DestFile>
+  <DestTime>2016-04-27T09:10:13.2822101+07:00</DestTime>
   <Importer>WavImporter</Importer>
-  <ImporterTime>2016-03-30T13:36:08+07:00</ImporterTime>
+  <ImporterTime>2016-03-16T09:18:04+07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
-  <ProcessorTime>2016-03-30T13:36:08+07:00</ProcessorTime>
+  <ProcessorTime>2016-03-16T09:18:04+07:00</ProcessorTime>
   <Parameters>
     <Key>Quality</Key>
     <Value>Best</Value>

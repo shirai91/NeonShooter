@@ -4,38 +4,38 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Bullet.png</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Player.png</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Pointer.png</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Seeker.png</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Wanderer.png</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Font.spritefont</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-01.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-02.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-03.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-04.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-05.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-06.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-07.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-08.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/Music.mp3</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/shoot-01.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/shoot-02.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/shoot-03.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/shoot-04.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-01.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-02.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-03.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-04.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-05.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-06.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-07.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-08.wav</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Shaders/BloomCombine.fx</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Shaders/BloomExtract.fx</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Shaders/GaussianBlur.fx</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Black Hole.png</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Glow.png</File>
-    <File>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Laser.png</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Bullet.png</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Player.png</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Pointer.png</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Seeker.png</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Wanderer.png</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Font.spritefont</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-01.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-02.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-03.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-04.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-05.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-06.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-07.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/explosion-08.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/Music.mp3</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/shoot-01.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/shoot-02.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/shoot-03.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/shoot-04.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-01.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-02.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-03.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-04.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-05.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-06.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-07.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-08.wav</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Shaders/BloomCombine.fx</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Shaders/BloomExtract.fx</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Shaders/GaussianBlur.fx</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Black Hole.png</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Glow.png</File>
+    <File>D:/Git Local Repository/NeonShooter/NeonShooter/NeonShooter/Content/Laser.png</File>
   </SourceFiles>
 </SourceFileCollection>

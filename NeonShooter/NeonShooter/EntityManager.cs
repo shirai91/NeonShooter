@@ -131,5 +131,13 @@ namespace NeonShooter
                 entity.Draw(spriteBatch);
             }
         }
+
+        public static void Reset()
+        {
+            //entities.Clear();
+            bullets.Clear();
+            enemies.Clear();
+            blackHoles.Clear();
+        }
     }
 }

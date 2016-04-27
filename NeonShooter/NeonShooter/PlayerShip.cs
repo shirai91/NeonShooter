@@ -59,6 +59,7 @@ namespace NeonShooter
         }
         public void Kill()
         {
+            EntityManager.Reset();
             EnemySpawner.Reset();
             framesUntilRespawn = 60;
             PlayerStatus.RemoveLife();
