@@ -16,7 +16,15 @@ namespace NeonShooter
         public float Orientation;
         public float Radius = 20;
         public bool IsExpired;
-        public Vector2 Size => image == null ? Vector2.Zero : new Vector2(image.Width, image.Height);
+        private Vector2 _size;
+        public Vector2 Size
+        {
+            get
+            {
+                return image == null ? _size= Vector2.Zero : _size= new Vector2(image.Width, image.Height);
+            }
+            set { _size = value; }
+        } 
         public abstract void Update();
 
         public virtual void Draw(SpriteBatch spriteBatch)

@@ -29,7 +29,8 @@ namespace NeonShooter
         {
             if (IsDead)
             {
-                framesUntilRespawn--;
+                if (--framesUntilRespawn == 0)
+                    GameRoot.WarpingGrid.ApplyDirectedForce(new Vector3(0, 0, 5000), new Vector3(Position, 0), 50);
                 return;
             }
             const float speed = 8;

@@ -40,7 +40,7 @@
   <ItemGroup>
     <Compile Include="Art.cs" />
     <Compile Include="BlackHole.cs" />
-    <Compile Include="BloomComponent.cs" />
+    <Compile Include="Bloom.cs" />
     <Compile Include="BloomSettings.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="ColorUtil.cs" />
@@ -56,9 +56,12 @@
     <Compile Include="ParticleManager.cs" />
     <Compile Include="PlayerShip.cs" />
     <Compile Include="PlayerStatus.cs" />
+    <Compile Include="PointMass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sound.cs" />
+    <Compile Include="Spring.cs" />
+    <Compile Include="WarpingGrid.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

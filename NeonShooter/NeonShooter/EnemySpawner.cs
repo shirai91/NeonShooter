@@ -12,7 +12,7 @@ namespace NeonShooter
     {
         static Random rand = new Random();
         static float inverseSpawnChance = 100;
-        static float inverseBlackHoleChance = 1000;
+        static float inverseBlackHoleChance = 600;
         private const string highScoreFilename = "highscore.txt";
 
         private static int LoadHighScore()
@@ -30,19 +30,23 @@ namespace NeonShooter
         {
             if (!PlayerShip.Instance.IsDead && EntityManager.Count < 200)
             {
-                if (rand.Next((int)inverseSpawnChance) == 0)
+                if (rand.Next((int) inverseSpawnChance) == 0)
+                {
                     EntityManager.Add(Enemy.CreateSeeker(GetSpawnPosition()));
-
-                if (rand.Next((int)inverseSpawnChance) == 0)
+                }
+                if (rand.Next((int) inverseSpawnChance) == 0)
+                {
                     EntityManager.Add(Enemy.CreateWanderer(GetSpawnPosition()));
-
-                if (EntityManager.BlackHoleCount < 5 && rand.Next((int)inverseBlackHoleChance) == 0)
+                }
+                if (EntityManager.BlackHoleCount < 2 && rand.Next((int) inverseBlackHoleChance) == 0)
+                {
                     EntityManager.Add(new BlackHole(GetSpawnPosition()));
+                }
             }
             // slowly increase the spawn rate as time progresses
             if (inverseSpawnChance > 20)
                 inverseSpawnChance -= 0.005f;
-            if (inverseBlackHoleChance > 60)
+            if (inverseBlackHoleChance > 100)
                 inverseBlackHoleChance -= 0.005f;
         }
 

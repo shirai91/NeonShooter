@@ -3,13 +3,25 @@
 // This is the final step in applying a bloom postprocess.
 
 sampler BloomSampler : register(s0);
-sampler BaseSampler : register(s1);
+sampler BaseSampler : register(s1)
+{
+	Texture = (BaseTexture); // <--- must use SetValue for BaseTexture
+	Filter = Linear;
+	AddressU = clamp;
+	AddressV = clamp;
+};
 
 float BloomIntensity;
 float BaseIntensity;
-
 float BloomSaturation;
 float BaseSaturation;
+
+struct VSOutput 
+{
+	float4 position		: SV_Position;
+	float4 color		: COLOR0;
+	float2 texCoord		: TEXCOORD0;
+};
 
 
 // Helper for modifying the saturation of a color.
@@ -17,17 +29,16 @@ float4 AdjustSaturation(float4 color, float saturation)
 {
     // The constants 0.3, 0.59, and 0.11 are chosen because the
     // human eye is more sensitive to green light, and less to blue.
-    float grey = dot(color, float4(0.3, 0.59, 0.11,0.5));
-
+    float grey = dot(color, float4(0.3, 0.59, 0.11,1.0));
     return lerp(grey, color, saturation);
 }
 
 
-float4 PixelShaderFunction(float2 texCoord : TEXCOORD0) : COLOR0
+float4 PixelShaderFunction(VSOutput input) : COLOR0
 {
     // Look up the bloom and original base image colors.
-    float4 bloom = tex2D(BloomSampler, texCoord);
-    float4 base = tex2D(BaseSampler, texCoord);
+    float4 bloom = tex2D(BloomSampler, input.texCoord);
+	float4 base = tex2D(BaseSampler, input.texCoord);
     
     // Adjust color saturation and intensity.
     bloom = AdjustSaturation(bloom, BloomSaturation) * BloomIntensity;
@@ -46,6 +57,6 @@ technique BloomCombine
 {
     pass Pass1
     {
-        PixelShader = compile ps_4_0_level_9_1 PixelShaderFunction();
+		PixelShader = compile ps_4_0_level_9_1 PixelShaderFunction();
     }
 }

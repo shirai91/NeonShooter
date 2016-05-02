@@ -3,7 +3,7 @@
   <SourceFile>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/Sound/spawn-08.wav</SourceFile>
   <SourceTime>2016-04-27T05:20:54.516177+07:00</SourceTime>
   <DestFile>D:/Local Git Repository/NeonShooter/NeonShooter/NeonShooter/Content/bin/Windows/Sound/spawn-08.xnb</DestFile>
-  <DestTime>2016-04-27T21:24:23.6608773+07:00</DestTime>
+  <DestTime>2016-05-02T15:11:22.2273397+07:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2016-03-30T13:36:08+07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

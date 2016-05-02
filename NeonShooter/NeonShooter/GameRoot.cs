@@ -1,4 +1,5 @@
-﻿using BloomPostprocess;
+﻿using System;
+using BloomPostprocess;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -18,18 +19,16 @@ namespace NeonShooter
         public static Vector2 ScreenSize => new Vector2(Viewport.Width, Viewport.Height);
         public static GameTime GameTime => new GameTime();
         public static ParticleManager<ParticleState> ParticleManager { get; private set; }
-        BloomComponent bloom;
-        RenderTarget2D renderTarget2D;
+        public static WarpingGrid WarpingGrid { get; private set; }
+        private RenderTarget2D _renderTarget1, _renderTarget2;
+        private Bloom bloom;
         public GameRoot()
         {
             Instance = this;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            bloom = new BloomComponent(this);
-            Components.Add(bloom);
             graphics.PreferredBackBufferWidth = 1350;
             graphics.PreferredBackBufferHeight = 730;
-            bloom.Settings = BloomSettings.PresetSettings[2];
         }
 
         /// <summary>
@@ -40,17 +39,16 @@ namespace NeonShooter
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            Art.Load(Content);
-            Sound.Load(Content);
-            ParticleManager = new ParticleManager<ParticleState>(1024*20,ParticleState.UpdateParticle);
+            base.Initialize();
+            ParticleManager = new ParticleManager<ParticleState>(1024 * 20, ParticleState.UpdateParticle);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(Sound.Music);
             EntityManager.Add(PlayerShip.Instance);
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(Sound.Music);
-            renderTarget2D = new RenderTarget2D(graphics.GraphicsDevice, Viewport.Width, Viewport.Height, false, graphics.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.None);
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(Sound.Music);
-            base.Initialize();
+            const int maxGridPoints = 1600;
+            Vector2 gridSpacing = new Vector2((float)Math.Sqrt(Viewport.Width * Viewport.Height / maxGridPoints));
+            WarpingGrid = new WarpingGrid(Viewport.Bounds, gridSpacing);
         }
 
         /// <summary>
@@ -61,7 +59,13 @@ namespace NeonShooter
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            bloom.LoadContent(graphics.GraphicsDevice,Content);
+            Art.Load(Content);
+            Sound.Load(Content);
+            _renderTarget1 = new RenderTarget2D(GraphicsDevice, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, false, GraphicsDevice.PresentationParameters.BackBufferFormat, GraphicsDevice.PresentationParameters.DepthStencilFormat, GraphicsDevice.PresentationParameters.MultiSampleCount, RenderTargetUsage.DiscardContents);
+            _renderTarget2 = new RenderTarget2D(GraphicsDevice, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, false, GraphicsDevice.PresentationParameters.BackBufferFormat, GraphicsDevice.PresentationParameters.DepthStencilFormat, GraphicsDevice.PresentationParameters.MultiSampleCount, RenderTargetUsage.DiscardContents);
+            bloom = new Bloom(GraphicsDevice, spriteBatch) {Settings = BloomSettings.PresetSettings[1]};
+            bloom.LoadContent(Content, GraphicsDevice.PresentationParameters);
+            bloom.Settings.BloomSaturation = 0.5f;
             // TODO: use this.Content to load your game content here
         }
 
@@ -72,6 +76,9 @@ namespace NeonShooter
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+            bloom.UnloadContent();
+            _renderTarget1.Dispose();
+            _renderTarget2.Dispose();
         }
 
         /// <summary>
@@ -86,6 +93,7 @@ namespace NeonShooter
             EntityManager.Update();
             Input.Update();
             ParticleManager.Update();
+            WarpingGrid.Update();
             GameManager.Update();
             EnemySpawner.Update();
             PlayerStatus.Update();
@@ -98,23 +106,32 @@ namespace NeonShooter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            bloom.BeginDraw(renderTarget2D);
-            bloom.ShowBuffer = BloomComponent.IntermediateBuffer.FinalResult;
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.SetRenderTarget(_renderTarget1);
+            GraphicsDevice.Clear(Color.Transparent);
+            //Draw all game object to render target here
             spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.Additive);
+            WarpingGrid.Draw(spriteBatch);
             ParticleManager.Draw(spriteBatch);
             EntityManager.Draw(spriteBatch);
-            bloom.Draw(gameTime, renderTarget2D);
+            spriteBatch.End();
+            bloom.Draw(_renderTarget1, _renderTarget2);
+            GraphicsDevice.SetRenderTarget(null);
+            //Draw post bloom here
+            spriteBatch.Begin(0, BlendState.AlphaBlend);
+            spriteBatch.Draw(_renderTarget2, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White); // draw all glowing components            
+            spriteBatch.End();
+            //Draw all UI Component here
+            spriteBatch.Begin();
             spriteBatch.DrawString(Art.Font, "Lives: " + PlayerStatus.Lives, new Vector2(5), Color.White);
             DrawRightAlignedString("Score: " + PlayerStatus.Score, 5);
             DrawRightAlignedString("Multiplier: " + PlayerStatus.Multiplier, 35);
-            spriteBatch.Draw(Art.Pointer,Input.MousePosition,Color.White);
+            spriteBatch.Draw(Art.Pointer, Input.MousePosition, Color.White);
             if (GameManager.IsPausedWhenGameOver)
             {
                 var text = "Game Over\n" +
                            "Your Score: " + PlayerStatus.Score + "\n" +
                            "High Score: " + PlayerStatus.HighScore + "\n" +
-                           $"Restart in {GameManager.PauseFrame/60+1:D1}";
+                           $"Restart in {GameManager.PauseFrame / 60 + 1:D1}";
 
                 var textSize = Art.Font.MeasureString(text);
                 spriteBatch.DrawString(Art.Font, text, ScreenSize / 2 - textSize / 2, Color.White);

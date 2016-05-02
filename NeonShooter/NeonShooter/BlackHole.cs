@@ -28,9 +28,9 @@ namespace NeonShooter
             {
                 var hue = (float)((3 * GameRoot.GameTime.TotalGameTime.TotalSeconds) % 6);
                 var particleColor = ColorUtil.HSVToColor(hue, 0.25f, 1);
-                const int numParticles = 150;
+                const int numParticles = 300;
                 var startOffset = rand.NextFloat(0, MathHelper.TwoPi / numParticles);
-
+                Sound.Explosion.Play(0.5f, rand.NextFloat(-0.2f, 0.2f), 0);
                 for (var i = 0; i < numParticles; i++)
                 {
                     var sprayVel = MathUtil.FromPolar(MathHelper.TwoPi * i / numParticles + startOffset, rand.NextFloat(8, 16));
@@ -63,7 +63,8 @@ namespace NeonShooter
 
                 GameRoot.ParticleManager.CreateParticle(Art.LineParticle, pos, color, 60, new Vector2(0.7f,0.7f), state);
             }
-            
+            GameRoot.WarpingGrid.ApplyImplosiveForce(100f, new Vector3(Position.X, Position.Y, 0f), 10);
+
             // rotate the spray direction
             sprayAngle -= MathHelper.TwoPi / 50f;
             foreach (var entity in entities)

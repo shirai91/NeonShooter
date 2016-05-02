@@ -43,8 +43,8 @@ namespace NeonShooter
             if (Score > HighScore)
                 SaveHighScore(HighScore = Score);
             Score = 0;
-            Lives = 4;
-            scoreForExtraLife = 2000;
+            Lives = 1;
+            scoreForExtraLife = 10000;
             multiplierTimeLeft = 0;
             ResetMultiplier();
             IsGameOver = isGameOver;

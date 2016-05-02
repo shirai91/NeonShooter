@@ -5,14 +5,20 @@ sampler TextureSampler : register(s0);
 
 float BloomThreshold;
 
-
-float4 PixelShaderFunction(float2 texCoord : TEXCOORD0) : COLOR0
+struct VSOutput
 {
-    // Look up the original image color.
-    float4 c = tex2D(TextureSampler, texCoord);
+	float4 position		: SV_Position;
+	float4 color		: COLOR0;
+	float2 texCoord		: TEXCOORD0;
+};
 
-    // Adjust it to keep only values brighter than the specified threshold.
-    return saturate((c - BloomThreshold) / (1 - BloomThreshold));
+
+float4 PixelShaderFunction(VSOutput input) : COLOR0
+{    
+    float4 c = tex2D(TextureSampler, input.texCoord);  // Look up the original image color.    
+	
+	// Adjust it to keep only values brighter than the specified threshold.
+    return saturate((c - BloomThreshold) / (1 - BloomThreshold)); 
 }
 
 
@@ -20,6 +26,6 @@ technique BloomExtract
 {
     pass Pass1
     {
-        PixelShader = compile ps_4_0_level_9_1 PixelShaderFunction();
+		PixelShader = compile ps_4_0_level_9_1 PixelShaderFunction();
     }
 }

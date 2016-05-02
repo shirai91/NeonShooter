@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -19,6 +20,8 @@ namespace NeonShooter
         public static SpriteFont Font { get; internal set; }
         public static Texture2D LineParticle { get; private set; }
         public static Texture2D Glow { get; private set; }
+        public static Texture2D Pixel { get; private set; }
+
         public static void Load(ContentManager content)
         {
             Player = content.Load<Texture2D>("Player");
@@ -30,6 +33,8 @@ namespace NeonShooter
             BlackHole = content.Load<Texture2D>("Black Hole");
             LineParticle = content.Load<Texture2D>("Laser");
             Glow = content.Load<Texture2D>("Glow");
+            Pixel = new Texture2D(Player.GraphicsDevice, 1, 1);
+            Pixel.SetData(new[] { Color.White });
         }
     }
 }

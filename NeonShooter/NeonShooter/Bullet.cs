@@ -27,6 +27,7 @@ namespace NeonShooter
                 Orientation = Velocity.ToAngle();
             }
             Position += Velocity;
+            GameRoot.WarpingGrid.ApplyDirectedForce(new Vector3(Position,0)*0.01f, new Vector3(Position.X,Position.Y,0f), 20);
             if (!GameRoot.Viewport.Bounds.Contains(Position.ToPoint()))
             {
                 IsExpired = true;

@@ -101,40 +101,6 @@ namespace NeonShooter
                 yield return 0;
             }
         }
-        IEnumerable<int> MoveInASquare()
-        {
-            const int framesPerSide = 30;
-            while (true)
-            {
-                // move right for 30 frames
-                for (int i = 0; i < framesPerSide; i++)
-                {
-                    Velocity = Vector2.UnitX;
-                    yield return 0;
-                }
-
-                // move down
-                for (int i = 0; i < framesPerSide; i++)
-                {
-                    Velocity = Vector2.UnitY;
-                    yield return 0;
-                }
-
-                // move left
-                for (int i = 0; i < framesPerSide; i++)
-                {
-                    Velocity = -Vector2.UnitX;
-                    yield return 0;
-                }
-
-                // move up
-                for (int i = 0; i < framesPerSide; i++)
-                {
-                    Velocity = -Vector2.UnitY;
-                    yield return 0;
-                }
-            }
-        }
         IEnumerable<int> MoveRandomly()
         {
             var rand = new Random();
